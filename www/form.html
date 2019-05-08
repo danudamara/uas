@@ -7,22 +7,27 @@
     <script type="text/javascript">
     $(document).ready(function() {
         var id = decodeURI(getUrlVars()["id"]);
-        var title = decodeURI(getUrlVars()["title"]);
-        var duration = decodeURI(getUrlVars()["duration"]);
-        var price = decodeURI(getUrlVars()["price"]);
+        var Nama = decodeURI(getUrlVars()["Nama"]);
+        var Nim = decodeURI(getUrlVars()["Nim"]);
+        var Email = decodeURI(getUrlVars()["Email"]);
+        var Sertifikasi = decodeURI(getUrlVars()["Sertifikasi"]);
         $("#id").val(id);
-        $("#title").val(title);
-        $("#duration").val(duration);
-        $("#price").val(price);
+        $("#Nama").val(Nama);
+        $("#Nim").val(Nim);
+        $("#Email").val(Email);
+        $("#Sertifikasi").val(Sertifikasi);
+        
         $("#update").click(function() {
             var id = $("#id").val();
-            var title = $("#title").val();
-            var duration = $("#duration").val();
-            var price = $("#price").val();
-            var dataString = "id=" + id + "&title=" + title + "&duration=" + duration + "&price=" + price + "&update=";
+            var Nama = $("#Nama").val();
+            var Nim = $("#Nim").val();
+            var Email = $("#Email").val();
+            var Sertifikasi = $("#Sertifikasi").val();
+
+            var dataString = "id=" + id + "&Nama=" + Nama + "&Nim=" + Nim + "&Email=" + Email + "&Sertifikasi=" + Sertifikasi +  "&update=";
             $.ajax({
                 type: "POST",
-                url: "https://kungfumas.000webhostapp.com/update.php",
+                url: "https://danudamara98.000webhostapp.com/AppCordova/AppCordova/www/update.php",
                 data: dataString,
                 crossDomain: true,
                 cache: false,
@@ -45,7 +50,7 @@
             var dataString = "id=" + id + "&delete=";
             $.ajax({
                 type: "GET",
-                url: "https://kungfumas.000webhostapp.com/delete.php",
+                url: "https://danudamara98.000webhostapp.com/AppCordova/AppCordova/www/delete.php",
                 data: dataString,
                 crossDomain: true,
                 cache: false,
@@ -78,17 +83,22 @@
     <div class="list">
         <input type="hidden" id="id" value="" />
         <div class="item">
-            <label>Title</label>
-            <input type="text" id="title" value="" />
+            <label>Nama</label>
+            <input type="text" id="Nama" value="" />
         </div>
         <div class="item">
-            <label>Duration</label>
-            <input type="text" id="duration" value="" />
+            <label>Nim</label>
+            <input type="text" id="Nim" value="" />
         </div>
         <div class="item">
-            <label>Price</label>
-            <input type="text" id="price" value="" />
+            <label>Email</label>
+            <input type="text" id="Email" value="" />
         </div>
+        <div class="item">
+            <label>Sertifikasi</label>
+            <input type="text" id="Sertifikasi" value="" />
+        </div>
+        
         <div class="item">
             <input type="button" id="update" class="button button-block" value="Update" />
             <input type="button" id="delete" class="button button-block" value="Delete" />
