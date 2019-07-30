@@ -1,0 +1,108 @@
+<html>
+
+<head>
+  <title>PENDATAAN TIM FUTSAL KAMPUS</title>
+   <link rel="stylesheet" href="css/style.css">
+     <script src='https://code.jquery.com/jquery-1.10.0.min.js'></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var id = decodeURI(getUrlVars()["id"]);
+        var kd_sponsor = decodeURI(getUrlVars()["kd_sponsor"]);
+        var nama_sponsor = decodeURI(getUrlVars()["nama_sponsor"]);
+        var kontrak = decodeURI(getUrlVars()["kontrak"]);
+        $("#id").val(id);
+        $("#kd_sponsor").val(kd_sponsor);
+        $("#nama_sponsor").val(nama_sponsor);
+        $("#kontrak").val(kontrak);
+        $("#update").click(function() {
+            var id = $("#id").val();
+            var kd_sponsor = $("#kd_sponsor").val();
+            var nama_sponsor = $("#nama_sponsor").val();
+            var dataString = "id=" + id + "&kd_sponsor=" + kd_sponsor + "&nama_sponsor=" + nama_sponsor + "&kontrak=" + kontrak + "&update=";
+            $.ajax({
+                type: "POST",
+                url: "https://maspion123.000webhostapp.com/update-makul.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                    $("#update").val('Connecting...');
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        alert("Updated");
+                        $("#update").val("Update");
+                    } else if (data == "error") {
+                        alert("error");
+                    }
+                }
+            });
+
+        });
+        $("#delete").click(function() {
+            var id = $("#id").val();
+            var dataString = "id=" + id + "&delete=";
+            $.ajax({
+                type: "GET",
+                url: "https://maspion123.000webhostapp.com/delete-makul.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                    $("#delete").val('Connecting...');
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        alert("Deleted");
+                        $("#delete").val("Delete");
+                    } else if (data == "error") {
+                        alert("error");
+                    }
+                }
+            });
+
+        });
+    });
+    </script>
+</head>
+
+<body>
+<div class="login-wrap">
+  <h2>SPONSORSHIP</h2>
+  <hr>
+    <div class="form">
+   <!-- <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="index.html" class="button button-clear">Home</a>
+        <h1 class="title">Update Data makul</h1>
+        <a class="button button-clear" href="readjson.html">Read JSON</a>
+    </div> -->
+    <div class="list">
+        <div class="login-page">
+  <div class="form">
+    
+    <form class="login-form">
+        <input type="hidden" id="id" value="" />
+      <input type="text" id="kd_sponsor" value="" />
+      <input type="text" id="nama_sponsor" value="" />
+      <input type="text" id="kontrak" value="" />
+      <div class="item">
+       
+      <center>
+            <input type="button" id="update" class="button button-block" value="Update" />
+            <input type="button" id="delete" class="button button-block" value="Delete" />
+            <hr>
+            <BR>
+                <BR>
+            <button formaction="index.html">Home</button>
+       <button formaction="readjson-makul.html">LIHAT DATA SPONSORSHIP</button>
+            </center>
+        </div>
+    </form>
+  </div>
+</div>
+    </div>
+</body>
+
+</html>

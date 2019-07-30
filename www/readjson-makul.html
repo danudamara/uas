@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <title>PENDATAAN TIM FUTSAL KAMPUS</title>
+      <link rel="stylesheet" href="css/style.css">
+     <script src='https://code.jquery.com/jquery-1.10.0.min.js'></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "https://maspion123.000webhostapp.com/json-makul.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                var id = field.id;
+                var kd_sponsor = field.kd_sponsor;
+                var nama_sponsor = field.nama_sponsor;
+                var kontrak = field.kontrak;
+                 $("#listview").append("<a class='item' href='form-makul.html?id=" + id + "&kd_sponsor=" + kd_sponsor + "&nama_sponsor=" + nama_sponsor  + "&kontrak=" + kontrak + "'><span class='item-note'><h2>kontrak : " + kontrak + "</span><p>Kode Sponsor : " + kd_sponsor + "</p> <p>Sponsor : " + nama_sponsor + "</p></h2></a><hr>");
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+<div class="login-wrap">
+  <h2>SPONSORSHIP</h2>
+  <hr>
+    <div class="form">
+    <!--<div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="index.html" class="button button-clear">Home</a>
+        <h1 class="title">Data makul</h1>
+    </div>-->
+    <br/>
+    <br/>
+    
+    <ul class="list" id="listview">
+    </ul>
+    <div class="list">
+        <div class="login-page">
+  <div class="form">
+    
+    <form class="login-form">
+      <button formaction="index.html">Home</button>
+       <button formaction="makul.html">INPUT SPONSORSHIP</button>
+	   <button formaction="https://maspion123.000webhostapp.com/tampil_json3.php">Read Json</button>
+  </form>
+  </div>
+  </div>
+  </div>
+    <br/>
+    <br/>
+</body>
+
+</html>

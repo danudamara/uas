@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <title>PENDATAAN TIM FUTSAL KAMPUS</title>
+    <link rel="stylesheet" href="css/style.css">
+     <script src='https://code.jquery.com/jquery-1.10.0.min.js'></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert").click(function() {
+            var kd_sponsor = $("#kd_sponsor").val();
+            var nama_sponsor = $("#nama_sponsor").val();
+            var kontrak = $("#kontrak").val();
+            var dataString = "&kd_sponsor=" + kd_sponsor + "&nama_sponsor=" + nama_sponsor + "&kontrak=" + kontrak + "&insert=";
+            if ($.trim(kd_sponsor).length > 0 & $.trim(nama_sponsor).length > 0 & $.trim(kontrak).length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://maspion123.000webhostapp.com/insert-makul.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("inserted");
+                            $("#insert").val('Insert');
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+    </script>
+</head>
+
+<body>
+ <div class="login-wrap">
+  <h2>SPONSORSHIP</h2>
+  <hr>
+    <div class="form">
+    <!--<div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <h1 class="title">Input makul</h1>
+        <a class="button button-clear" href="readjson.html">Lihat Data makul</a>
+    </div>-->
+    <div class="list">
+        <div class="login-page">
+  <div class="form">
+    
+    <form class="login-form">
+        <input type="hidden" id="id" value="" />
+      <input type="text" id="kd_sponsor" value="" placeholder="Kode sponsor"/>
+      <input type="text" id="nama_sponsor" value="" placeholder="Nama Sponsorship"/>
+      <input type="text" id="kontrak" value="" placeholder="kontrak"/>
+      <button id="insert" value="Insert">INPUT</button>
+        <button formaction="index.html">Home</button>
+        <HR>
+            <BR>
+                  <button formaction="readjson-makul.html">LIHAT DATA SPONSORSHIP</button>
+    </form>
+
+  </div>
+</div>
+    </div>
+    
+</body>
+
+</html>
